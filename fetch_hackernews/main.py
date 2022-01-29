@@ -28,9 +28,10 @@ def check_data_file():
     cwd = os.getcwd() + "/index.html"
 
     if Path(cwd).is_file():
-        print("File exist!")
+        parse_data()
     else:
-        print("File not exist!")
+        logger.debug("Fetch data...")
+        fetch_data()
 
 
 def fetch_data():
@@ -42,27 +43,12 @@ def fetch_data():
     with open("index.html", "w") as fh:
         fh.write(website_data.text)
 
+    parse_data()
 
-def main():
+
+def parse_data():
     with open("index.html", "r") as f:
         doc = BeautifulSoup(f, "html.parser")
-    # print(doc.prettify())
-    # tag = doc.title
-    # print(tag)  # <- Hacker News
-
-    # tag = doc.table
-    # tag = doc.find_all("td")[4]
-
-    """
-    title_1 = doc.find_all(class_="title")[5]
-    print(title_1)
-
-    title_2 = doc.find_all(class_="title")[7]
-    print(title_2)
-
-    title_3 = doc.find_all(class_="title")[9]
-    print(title_3)
-    """
 
     tag = doc.find_all(class_="titlelink", href=True)
 
@@ -71,8 +57,12 @@ def main():
         # print(t.text)
 
 
-if __name__ == '__main__':
-    limit_datetime = datetime.now() - timedelta(days=7)
+def main():
+    check_data_file()
+
+
+if __name__ == "__main__":
+    limit_datetime = datetime.now() - timedelta(days=1)
+    logger.debug(limit_datetime)
     URL = "https://news.ycombinator.com"
     main()
-    check_data_file()
