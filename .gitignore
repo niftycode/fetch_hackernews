@@ -1,0 +1,17 @@
+/.DS_Store
+/.idea
+/.vscode
+/.pytest_cache
+/.venv
+/.tox
+
+/build
+/dist
+/docs
+.DS_Store
+.pytest_cache
+.vscode
+*.pyc
+tox.ini
+
+profiles_backup.egg-info/
