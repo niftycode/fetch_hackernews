@@ -10,27 +10,40 @@ Date created: January 26th, 2022
 Date modified: January 29th, 2022
 """
 
+from datetime import datetime, timedelta
 from bs4 import BeautifulSoup
 import requests
+from pathlib import Path
+import os
 import logging
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger()
 
-URL = "https://news.ycombinator.com"
-
 
 def check_data_file():
-    pass
+    logger.debug(limit_datetime)
+    logger.debug(os.getcwd())
+
+    cwd = os.getcwd() + "/index.html"
+
+    if Path(cwd).is_file():
+        print("File exist!")
+    else:
+        print("File not exist!")
+
+
+def fetch_data():
+    # Fetch index.html file
+    website_data = requests.get(URL)
+    logger.debug(website_data.text)
+
+    # Save new index.html file
+    with open("index.html", "w") as fh:
+        fh.write(website_data.text)
 
 
 def main():
-    # website_data = requests.get(URL)
-    # print(website_data.text)
-
-    # with open("index2.html", "w") as fh:
-    #     fh.write(website_data.text)
-
     with open("index.html", "r") as f:
         doc = BeautifulSoup(f, "html.parser")
     # print(doc.prettify())
@@ -59,4 +72,7 @@ def main():
 
 
 if __name__ == '__main__':
+    limit_datetime = datetime.now() - timedelta(days=7)
+    URL = "https://news.ycombinator.com"
     main()
+    check_data_file()
