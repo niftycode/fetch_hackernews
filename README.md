@@ -1,10 +1,10 @@
 # fetch_hackernews
 
-Fetch news from [https://news.ycombinator.com](https://news.ycombinator.com).
+A simple Python program to fetch [Hackernews](https://news.ycombinator.com) from *ycombinator*. 
 
 ## Operating System
 
-macOS only
+macOS, Linux & Windows
 
 ## Requirements
 
