@@ -15,3 +15,4 @@
 tox.ini
 
 profiles_backup.egg-info/
+/fetch_hackernews.egg-info
