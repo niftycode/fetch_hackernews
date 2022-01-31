@@ -88,10 +88,6 @@ def parse_data():
         headlines.append(t.text)
         links.append(t["href"])
 
-    # Remove the last items
-    # headlines.pop()
-    # links.pop()
-
     # Create empty list
     hackernews_data = []
 
