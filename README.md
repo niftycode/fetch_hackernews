@@ -6,7 +6,7 @@ After running this program, an index.html file is created locally. This file wil
 
 ## Operating System
 
-macOS, Linux & Windows
+macOS only
 
 ## Requirements
 

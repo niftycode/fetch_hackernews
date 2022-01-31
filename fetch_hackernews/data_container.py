@@ -6,7 +6,7 @@
 Data model
 Python 3.10+
 Date created: January 30th, 2022
-Date modified: -
+Date modified: January 31st, 2022
 """
 
 from dataclasses import dataclass
@@ -30,6 +30,5 @@ class Headlines:
         """
         :rtype: String representation of this object
         """
-        return f"No: {self.headline_id}\n" \
-               f"Headline: {self.headline}\n" \
+        return f"{self.headline_id} - {self.headline}\n" \
                f"Link: {self.link}\n"

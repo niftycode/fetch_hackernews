@@ -11,12 +11,13 @@ Date modified: -
 
 
 def cli_menu(headlines: list):
-
+    print()
     print("##############################")
     print("#                            #")
     print("#         Hackernews         #")
     print("#                            #")
     print("##############################")
+    print()
 
     for headline in headlines:
         print(headline)
