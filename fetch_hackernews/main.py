@@ -42,7 +42,7 @@ def check_data_file():
         parse_data()
     else:
         print("Found no local index.html file.")
-        print("Fetch data from Hackernews...")
+        print("Fetch data from https://news.ycombinator.com…")
         fetch_data()
 
 

@@ -14,7 +14,7 @@ def cli_menu(headlines: list):
     print()
     print("##############################")
     print("#                            #")
-    print("#         Hackernews         #")
+    print("#         Hacker News        #")
     print("#                            #")
     print("##############################")
     print()
