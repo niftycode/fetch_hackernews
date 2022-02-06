@@ -20,32 +20,40 @@ import logging
 from fetch_hackernews.data_container import Headlines
 from fetch_hackernews.cli_output import cli_menu
 from fetch_hackernews.app_config import check_config_dir
+from fetch_hackernews.fetch_data import get_hackernews
 
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger()
 
 
-def check_data_file():
+def check_data_file() -> bool:
     logger.debug(limit_datetime)
     logger.debug(os.getcwd())
 
     index_path_file = f"/Users/{getpass.getuser()}/.config/hackernews/index.html"
 
     if Path(index_path_file).is_file():
+        # index.html exist
         last_modified = datetime.fromtimestamp(os.path.getmtime(index_path_file))
         logger.debug(f"last modified: {last_modified}")
         logger.debug(f"limit_datetime: {limit_datetime}")
         if last_modified < limit_datetime:
             logger.debug("Fetch data...")
-            fetch_data()
-        parse_data()
+            # fetched_news = get_hackernews()
+            # fetch_data()
+        # parse_data()
+        return True
     else:
+        # index.html doesn's exist
         print("Found no local index.html file.")
         print("Fetch data from https://news.ycombinator.com…")
-        fetch_data()
+        # fetched_news = get_hackernews()
+        # fetch_data()
+        return False
 
 
+"""
 def fetch_data():
     # Fetch index.html file
     website_data = requests.get(URL)
@@ -61,6 +69,7 @@ def fetch_data():
         fh.write(website_data.text)
 
     parse_data()
+"""
 
 
 def parse_data():
@@ -103,7 +112,12 @@ def parse_data():
 
 def main():
     check_config_dir()
-    check_data_file()
+    rval = check_data_file()
+
+    if rval:
+        pass
+    else:
+        pass
 
 
 if __name__ == "__main__":
