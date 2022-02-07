@@ -25,48 +25,50 @@ URL = constants.__URL__
 INDEX_FILE_PATH = constants.__INDEX_FILE_PATH__
 
 
-def get_hackernews():
-    # Get hacker news' index.html file
-    website_data = requests.get(URL)
-    if website_data.ok:
-        logger.debug(website_data.text)
-        return website_data
-    else:
-        return None
+class FileManager:
+    @staticmethod
+    def get_hackernews():
+        # Get hacker news' index.html file
+        website_data = requests.get(URL)
+        if website_data.ok:
+            logger.debug(website_data.text)
+            return website_data.text
+        else:
+            return None
 
+    @staticmethod
+    def create_config_file(file_path, content):
+        with open(file_path, "w") as fh:
+            fh.write(content)
 
-def create_config_file(website_data):
-    with open(INDEX_FILE_PATH, "w") as fh:
-        fh.write(website_data.text)
+    @staticmethod
+    def parse_data():
+        with open(INDEX_FILE_PATH, "r") as f:
+            doc = BeautifulSoup(f, "html.parser")
 
+        tag = doc.find_all(class_="titlelink", href=True)
 
-def parse_data():
-    with open(INDEX_FILE_PATH, "r") as f:
-        doc = BeautifulSoup(f, "html.parser")
+        for t in tag:
+            logger.debug(t["href"])
+            logger.debug(t.text)
 
-    tag = doc.find_all(class_="titlelink", href=True)
+        headline_id = []
+        headlines = []
+        links = []
 
-    for t in tag:
-        logger.debug(t["href"])
-        logger.debug(t.text)
+        for i in range(1, 31):
+            headline_id.append(i)
 
-    headline_id = []
-    headlines = []
-    links = []
+        for t in tag:
+            headlines.append(t.text)
+            links.append(t["href"])
 
-    for i in range(1, 31):
-        headline_id.append(i)
+        hackernews_data = []
 
-    for t in tag:
-        headlines.append(t.text)
-        links.append(t["href"])
+        # Append Headline objects containing headline_id, headlines and links.
+        for i in range(0, 30):
+            hackernews_data.append(Headlines(headline_id[i],
+                                             headlines[i],
+                                             links[i]))
 
-    hackernews_data = []
-
-    # Append Headline objects containing headline_id, headlines and links.
-    for i in range(0, 30):
-        hackernews_data.append(Headlines(headline_id[i],
-                                         headlines[i],
-                                         links[i]))
-
-    return hackernews_data
+        return hackernews_data

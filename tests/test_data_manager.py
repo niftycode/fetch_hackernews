@@ -1,10 +1,15 @@
-# import pytest
+import pytest
 
-from unittest.mock import patch
-
+from unittest.mock import patch, mock_open
 from nose.tools import assert_is_not_none, assert_is_none
 
-from fetch_hackernews.data_manager import get_hackernews
+from fetch_hackernews.data_manager import FileManager
+
+
+@pytest.fixture()
+def create_directory(tmpdir):
+    directory = tmpdir.mkdir('sub/')
+    yield directory
 
 
 @patch('fetch_hackernews.data_manager.requests.get')
@@ -13,7 +18,7 @@ def test_response_is_ok(mock_get):
     mock_get.return_value.ok = True
 
     # Send a request to the server and store the response.
-    website_data = get_hackernews()
+    website_data = FileManager.get_hackernews()
 
     # Confirm that the website data will be returned (and not None)
     assert_is_not_none(website_data)
@@ -21,6 +26,28 @@ def test_response_is_ok(mock_get):
 
 @patch('fetch_hackernews.data_manager.requests.get')
 def test_response_is_not_ok(mock_get):
+
     mock_get.return_value.ok = False
-    website_data = get_hackernews()
+    website_data = FileManager.get_hackernews()
     assert_is_none(website_data)
+
+
+def test_write_index_file(create_directory):
+    fake_file_path = create_directory + "/sub"
+    content = "Message to write on file to be written"
+    open_mock = mock_open()
+
+    with patch("fetch_hackernews.data_manager.open", open_mock, create=True) as mocked_file:
+        FileManager.create_config_file(fake_file_path, content)
+
+        # assert if opened file on write mode 'w'
+        mocked_file.assert_called_once_with(fake_file_path, 'w')
+
+    # assert if write(content) was called from the file opened
+    # in another words, assert if the specific content was written in file
+    open_mock.return_value.write.assert_called_once_with(content)
+
+
+def test_read_index_file():
+    # TODO: Add test
+    pass

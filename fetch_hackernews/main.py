@@ -17,9 +17,7 @@ from pathlib import Path
 
 from fetch_hackernews import constants
 from fetch_hackernews.app_config import check_config_dir
-from fetch_hackernews.data_manager import get_hackernews
-from fetch_hackernews.data_manager import create_config_file
-from fetch_hackernews.data_manager import parse_data
+from fetch_hackernews.data_manager import FileManager
 from fetch_hackernews.cli_output import cli_menu
 
 
@@ -49,15 +47,15 @@ def main():
 
         if last_modified < limit_datetime:
             logger.debug("Fetch data...")
-            fetched_news = get_hackernews()
-            create_config_file(fetched_news)
-        hackernews = parse_data()
+            fetched_news = FileManager.get_hackernews()
+            FileManager.create_config_file(INDEX_FILE_PATH, fetched_news)
+        hackernews = FileManager.parse_data()
         cli_menu(hackernews)
     else:
         logger.debug("Found no local index.html file.")
-        fetched_news = get_hackernews()
-        create_config_file(fetched_news)
-        hackernews = parse_data()
+        fetched_news = FileManager.get_hackernews()
+        FileManager.create_config_file(INDEX_FILE_PATH, fetched_news)
+        hackernews = FileManager.parse_data()
         cli_menu(hackernews)
 
 
