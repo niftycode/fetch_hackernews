@@ -21,11 +21,13 @@ URL = "https://news.ycombinator.com"
 
 
 def get_hackernews():
-    # Get Hacker news' index.html file
+    # Get hacker news' index.html file
     website_data = requests.get(URL)
-    logger.debug(website_data.text)
-
-    return website_data
+    if website_data.ok:
+        logger.debug(website_data.text)
+        return website_data
+    else:
+        return None
 
 
 def create_config_file(website_data):
