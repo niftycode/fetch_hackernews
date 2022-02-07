@@ -9,13 +9,15 @@ Date created: January 26th, 2022
 Date modified: February 7th, 2022
 """
 
-from datetime import datetime, timedelta
-from bs4 import BeautifulSoup
-from pathlib import Path
 import os
 import getpass
 import logging
 
+from datetime import datetime, timedelta
+from bs4 import BeautifulSoup
+from pathlib import Path
+
+from fetch_hackernews import constants
 from fetch_hackernews.data_container import Headlines
 from fetch_hackernews.cli_output import cli_menu
 from fetch_hackernews.app_config import check_config_dir
@@ -87,7 +89,6 @@ def main():
             logger.debug("Fetch data...")
             fetched_news = get_hackernews()
             create_config_file(fetched_news)
-
         parse_data()
 
     else:
@@ -98,7 +99,7 @@ def main():
 
 
 if __name__ == "__main__":
-    INDEX_FILE_PATH = f"/Users/{getpass.getuser()}/.config/hackernews/index.html"
+    URL = constants.__URL__
+    INDEX_FILE_PATH = constants.__INDEX_FILE_PATH__
     limit_datetime = datetime.now() - timedelta(hours=6)
-    URL = "https://news.ycombinator.com"
     main()

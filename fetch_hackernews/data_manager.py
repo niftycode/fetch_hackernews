@@ -14,10 +14,13 @@ import getpass
 import requests
 import logging
 
-logging.basicConfig(level=logging.INFO)
+from fetch_hackernews import constants
+
+# logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger()
 
-URL = "https://news.ycombinator.com"
+URL = constants.__URL__
+INDEX_FILE_PATH = constants.__INDEX_FILE_PATH__
 
 
 def get_hackernews():
@@ -31,11 +34,5 @@ def get_hackernews():
 
 
 def create_config_file(website_data):
-    # Get path to the index.html file
-    path = f"/Users/{getpass.getuser()}/.config/hackernews/"
-    file_name = "index.html"
-    index_file_path = os.path.join(path, file_name)
-
-    # Save new index.html file
-    with open(index_file_path, "w") as fh:
+    with open(INDEX_FILE_PATH, "w") as fh:
         fh.write(website_data.text)
