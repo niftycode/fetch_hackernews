@@ -9,11 +9,13 @@ Date created: February 5th, 2022
 Date modified: -
 """
 
-import os
-import getpass
+
 import requests
 import logging
 
+from bs4 import BeautifulSoup
+
+from fetch_hackernews.data_container import Headlines
 from fetch_hackernews import constants
 
 # logging.basicConfig(level=logging.INFO)
@@ -36,3 +38,35 @@ def get_hackernews():
 def create_config_file(website_data):
     with open(INDEX_FILE_PATH, "w") as fh:
         fh.write(website_data.text)
+
+
+def parse_data():
+    with open(INDEX_FILE_PATH, "r") as f:
+        doc = BeautifulSoup(f, "html.parser")
+
+    tag = doc.find_all(class_="titlelink", href=True)
+
+    for t in tag:
+        logger.debug(t["href"])
+        logger.debug(t.text)
+
+    headline_id = []
+    headlines = []
+    links = []
+
+    for i in range(1, 31):
+        headline_id.append(i)
+
+    for t in tag:
+        headlines.append(t.text)
+        links.append(t["href"])
+
+    hackernews_data = []
+
+    # Append Headline objects containing headline_id, headlines and links.
+    for i in range(0, 30):
+        hackernews_data.append(Headlines(headline_id[i],
+                                         headlines[i],
+                                         links[i]))
+
+    return hackernews_data
