@@ -78,7 +78,6 @@ def main():
     rval = check_data_file()
 
     if rval:
-        # index_path_file = f"/Users/{getpass.getuser()}/.config/hackernews/index.html"
         last_modified = datetime.fromtimestamp(os.path.getmtime(INDEX_FILE_PATH))
 
         logger.debug(f"last modified: {last_modified}")
