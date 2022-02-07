@@ -6,7 +6,7 @@
 Data model
 Python 3.10+
 Date created: January 30th, 2022
-Date modified: January 31st, 2022
+Date modified: February 7th, 2022
 """
 
 from dataclasses import dataclass
@@ -15,7 +15,7 @@ from dataclasses import dataclass
 @dataclass
 class Headlines:
     """
-    This dataclass is the store for the hackernews.
+    This dataclass is the hacker news' data store.
     """
     headline_id: int
     headline: str

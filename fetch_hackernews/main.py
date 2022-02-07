@@ -6,12 +6,11 @@
 Fetch Hacker News from news.ycombinator.com
 Python 3.10+
 Date created: January 26th, 2022
-Date modified: January 29th, 2022
+Date modified: February 7th, 2022
 """
 
 from datetime import datetime, timedelta
 from bs4 import BeautifulSoup
-import requests
 from pathlib import Path
 import os
 import getpass
@@ -20,7 +19,8 @@ import logging
 from fetch_hackernews.data_container import Headlines
 from fetch_hackernews.cli_output import cli_menu
 from fetch_hackernews.app_config import check_config_dir
-from fetch_hackernews.fetch_data import get_hackernews
+from fetch_hackernews.data_manager import get_hackernews
+from fetch_hackernews.data_manager import create_config_file
 
 
 logging.basicConfig(level=logging.INFO)
@@ -31,45 +31,10 @@ def check_data_file() -> bool:
     logger.debug(limit_datetime)
     logger.debug(os.getcwd())
 
-    index_path_file = f"/Users/{getpass.getuser()}/.config/hackernews/index.html"
-
-    if Path(index_path_file).is_file():
-        # index.html exist
-        last_modified = datetime.fromtimestamp(os.path.getmtime(index_path_file))
-        logger.debug(f"last modified: {last_modified}")
-        logger.debug(f"limit_datetime: {limit_datetime}")
-        if last_modified < limit_datetime:
-            logger.debug("Fetch data...")
-            # fetched_news = get_hackernews()
-            # fetch_data()
-        # parse_data()
+    if Path(INDEX_FILE_PATH).is_file():
         return True
     else:
-        # index.html doesn's exist
-        print("Found no local index.html file.")
-        print("Fetch data from https://news.ycombinator.com…")
-        # fetched_news = get_hackernews()
-        # fetch_data()
         return False
-
-
-"""
-def fetch_data():
-    # Fetch index.html file
-    website_data = requests.get(URL)
-    logger.debug(website_data.text)
-
-    # Get path to the index.html file
-    path = f"/Users/{getpass.getuser()}/.config/hackernews/"
-    file_name = "index.html"
-    index_file_path = os.path.join(path, file_name)
-
-    # Save new index.html file
-    with open(index_file_path, "w") as fh:
-        fh.write(website_data.text)
-
-    parse_data()
-"""
 
 
 def parse_data():
@@ -97,11 +62,9 @@ def parse_data():
         headlines.append(t.text)
         links.append(t["href"])
 
-    # Create empty list
     hackernews_data = []
 
-    # Append Headline objects containing
-    # headline_id, headlines and links.
+    # Append Headline objects containing headline_id, headlines and links.
     for i in range(0, 30):
         hackernews_data.append(Headlines(headline_id[i],
                                          headlines[i],
@@ -115,12 +78,28 @@ def main():
     rval = check_data_file()
 
     if rval:
-        pass
+        # index_path_file = f"/Users/{getpass.getuser()}/.config/hackernews/index.html"
+        last_modified = datetime.fromtimestamp(os.path.getmtime(INDEX_FILE_PATH))
+
+        logger.debug(f"last modified: {last_modified}")
+        logger.debug(f"limit_datetime: {limit_datetime}")
+
+        if last_modified < limit_datetime:
+            logger.debug("Fetch data...")
+            fetched_news = get_hackernews()
+            create_config_file(fetched_news)
+
+        parse_data()
+
     else:
-        pass
+        logger.debug("Found no local index.html file.")
+        fetched_news = get_hackernews()
+        create_config_file(fetched_news)
+        parse_data()
 
 
 if __name__ == "__main__":
+    INDEX_FILE_PATH = f"/Users/{getpass.getuser()}/.config/hackernews/index.html"
     limit_datetime = datetime.now() - timedelta(hours=6)
     URL = "https://news.ycombinator.com"
     main()
