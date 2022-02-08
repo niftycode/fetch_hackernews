@@ -52,4 +52,4 @@ By default, the `index.html` file is only updated every six hours. On macOS it i
 
 ## Changelog
 
-see [Changelog.md](#)
+see [Changelog.md](https://github.com/niftycode/fetch_hackernews/blob/main/Changelog.md)
