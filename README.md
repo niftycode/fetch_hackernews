@@ -11,8 +11,8 @@ I know, there are already some similar projects via [PyPi](https://pypi.org) ava
 ## Requirements
 
 * Python >= 3.8
-* requests
-* beautifulsoup4
+* `requests`
+* `beautifulsoup4`
 
 ## Install
 
@@ -46,7 +46,9 @@ After running this program, an index.html file is created locally. This file wil
 
 So, all news will be read from the local `index.html` file. This program will search for such a file. If no file has been created yet, it will create this file, download the content (using `requests`) and save it. After that, the content will be parsed using `BeautifulSoup`.
 
-By default, the `index.html` file is only updated every six hours. On macOS it is stored in the following directory:
+By default, the `index.html` file is only updated every six hours.
+
+The `index.html` file is stored in the following directory (macOS):
 
     ~/.config/hackernews
 

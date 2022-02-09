@@ -15,20 +15,24 @@ from dataclasses import dataclass
 @dataclass
 class Headlines:
     """
-    This dataclass is the hacker news' data store.
+    This dataclass is the hacker news data store.
     """
+
     headline_id: int
     headline: str
     link: str
 
     def __repr__(self):
-        return f'{self.__class__.__name__}({self.headline_id!r}, ' \
-               f'{self.headline!r}, ' \
-               f'{self.link!r})'
+        return (
+            f"{self.__class__.__name__}({self.headline_id!r}, "
+            f"{self.headline!r}, "
+            f"{self.link!r})"
+        )
 
     def __str__(self):
         """
-        :rtype: String representation of this object
+
+        Returns: String representation of this object
+
         """
-        return f"{self.headline_id} - {self.headline}\n" \
-               f"Link: {self.link}\n"
+        return f"{self.headline_id} - {self.headline}\n" f"Link: {self.link}\n"

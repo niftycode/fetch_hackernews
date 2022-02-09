@@ -3,7 +3,7 @@
 
 
 """
-Check for a .config directory
+Check for the existence of the .config directory
 Python 3.10+
 Date created: January 31st, 2022
 Date modified: -
@@ -14,6 +14,11 @@ import os
 
 
 def check_config_dir():
+    """
+    Check for the existence of the .config directory.
+    Create .config and hackernwes directories if they
+    doesn't exist.
+    """
     config_directory = f"/Users/{getpass.getuser()}/.config"
     directory = "hackernews"
     parent_path = config_directory

@@ -6,7 +6,7 @@
 Fetch Hacker News from news.ycombinator.com
 Python 3.10+
 Date created: February 5th, 2022
-Date modified: -
+Date modified: February 9th, 2022
 """
 
 
@@ -18,7 +18,7 @@ from bs4 import BeautifulSoup
 from fetch_hackernews.data_container import Headlines
 from fetch_hackernews import constants
 
-# logging.basicConfig(level=logging.INFO)
+
 logger = logging.getLogger()
 
 URL = constants.__URL__
@@ -26,6 +26,12 @@ INDEX_FILE_PATH = constants.__INDEX_FILE_PATH__
 
 
 class FileManager:
+    """
+    This class includes static methods for
+    fetching data, parsing the fetched data
+    and creating the local index.html file.
+    """
+
     @staticmethod
     def get_hackernews():
         # Get hacker news' index.html file
@@ -67,8 +73,6 @@ class FileManager:
 
         # Append Headline objects containing headline_id, headlines and links.
         for i in range(0, 30):
-            hackernews_data.append(Headlines(headline_id[i],
-                                             headlines[i],
-                                             links[i]))
+            hackernews_data.append(Headlines(headline_id[i], headlines[i], links[i]))
 
         return hackernews_data

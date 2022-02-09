@@ -4,15 +4,14 @@
 /.pytest_cache
 /.venv
 /.tox
-
 /build
 /dist
 /docs
+
 .DS_Store
 .pytest_cache
 .vscode
-*.pyc
-tox.ini
+.pyc
 
-profiles_backup.egg-info/
 /fetch_hackernews.egg-info
+__pycache__

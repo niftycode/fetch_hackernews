@@ -6,7 +6,7 @@
 Fetch Hacker News from news.ycombinator.com
 Python 3.10+
 Date created: January 26th, 2022
-Date modified: February 7th, 2022
+Date modified: February 9th, 2022
 """
 
 import os
@@ -26,9 +26,12 @@ logger = logging.getLogger()
 
 
 def check_data_file() -> bool:
-    logger.debug(limit_datetime)
-    logger.debug(os.getcwd())
+    """
+    Check if the index.html file exist.
 
+    Returns: True if the file exist, False if the File doesn't exist.
+
+    """
     if Path(INDEX_FILE_PATH).is_file():
         return True
     else:
@@ -36,6 +39,9 @@ def check_data_file() -> bool:
 
 
 def main():
+    """
+    Entry point of this application.
+    """
     check_config_dir()
     rval = check_data_file()
 
