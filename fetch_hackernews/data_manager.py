@@ -34,7 +34,10 @@ class FileManager:
 
     @staticmethod
     def get_hackernews():
-        # Get hacker news' index.html file
+        """
+        Fetch website data from the given URL
+        Returns: The fetched website data or None
+        """
         website_data = requests.get(URL)
         if website_data.ok:
             logger.debug(website_data.text)
@@ -44,19 +47,25 @@ class FileManager:
 
     @staticmethod
     def create_config_file(file_path, content):
+        """
+        Save a file (in this case the index.html file)
+        Args:
+            file_path: The path to the directory in which to save the file.
+            content: The content to be saved.
+        """
         with open(file_path, "w") as fh:
             fh.write(content)
 
     @staticmethod
     def parse_data():
+        """
+        Parse the index.html file.
+        Returns: A list containing the Headline objects.
+        """
         with open(INDEX_FILE_PATH, "r") as f:
             doc = BeautifulSoup(f, "html.parser")
 
         tag = doc.find_all(class_="titlelink", href=True)
-
-        for t in tag:
-            logger.debug(t["href"])
-            logger.debug(t.text)
 
         headline_id = []
         headlines = []
@@ -68,6 +77,15 @@ class FileManager:
         for t in tag:
             headlines.append(t.text)
             links.append(t["href"])
+
+        # Handle the case where a link contains the string item?id=.
+        substring = "item?id="
+        url = "https://news.ycombinator.com/"
+
+        for index, link in enumerate(links):
+            if link.find(substring) != -1:
+                print("found item?id")
+                links[index] = url + link
 
         hackernews_data = []
 
