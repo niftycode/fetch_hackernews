@@ -24,6 +24,9 @@ from fetch_hackernews.cli_output import cli_menu
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger()
 
+URL = constants.__URL__
+INDEX_FILE_PATH = constants.__INDEX_FILE_PATH__
+
 
 def check_data_file() -> bool:
     """
@@ -66,7 +69,5 @@ def main():
 
 
 if __name__ == "__main__":
-    URL = constants.__URL__
-    INDEX_FILE_PATH = constants.__INDEX_FILE_PATH__
     limit_datetime = datetime.now() - timedelta(hours=6)
     main()

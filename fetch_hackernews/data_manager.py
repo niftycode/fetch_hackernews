@@ -66,14 +66,13 @@ class FileManager:
             doc = BeautifulSoup(f, "html.parser")
 
         titlelink = doc.find_all(class_="titlelink", href=True)
-        score = doc.find_all(class_="score")
-
-        
+        # score = doc.find_all(class_="score")
+        # TODO: add points
 
         headline_id = []
         headlines = []
         links = []
-        points = []
+        # points = []
 
         for i in range(1, 31):
             headline_id.append(i)
@@ -82,12 +81,12 @@ class FileManager:
             headlines.append(t.text)
             links.append(t["href"])
 
-        for s in score:
-            points.append(s.text)
+        # for s in score:
+        #     points.append(s.text)
 
-        print(len(points))
-        for j in points:
-            print(j)
+        # print(len(points))
+        # for j in points:
+        #     print(j)
 
         # Handle the case where a link contains the string "item?id=".
         substring = "item?id="
@@ -101,7 +100,6 @@ class FileManager:
 
         # Append Headline objects containing headline_id, headlines and links.
         for i in range(0, 30):
-            pass
-            # hackernews_data.append(Headlines(headline_id[i], headlines[i], links[i], points[i]))
+            hackernews_data.append(Headlines(headline_id[i], headlines[i], links[i]))
 
         return hackernews_data
