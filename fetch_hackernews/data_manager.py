@@ -6,7 +6,7 @@
 Fetch Hacker News from news.ycombinator.com
 Python 3.10+
 Date created: February 5th, 2022
-Date modified: February 9th, 2022
+Date modified: February 10th, 2022
 """
 
 
@@ -65,32 +65,43 @@ class FileManager:
         with open(INDEX_FILE_PATH, "r") as f:
             doc = BeautifulSoup(f, "html.parser")
 
-        tag = doc.find_all(class_="titlelink", href=True)
+        titlelink = doc.find_all(class_="titlelink", href=True)
+        score = doc.find_all(class_="score")
+
+        
 
         headline_id = []
         headlines = []
         links = []
+        points = []
 
         for i in range(1, 31):
             headline_id.append(i)
 
-        for t in tag:
+        for t in titlelink:
             headlines.append(t.text)
             links.append(t["href"])
 
-        # Handle the case where a link contains the string item?id=.
+        for s in score:
+            points.append(s.text)
+
+        print(len(points))
+        for j in points:
+            print(j)
+
+        # Handle the case where a link contains the string "item?id=".
         substring = "item?id="
         url = "https://news.ycombinator.com/"
 
         for index, link in enumerate(links):
             if link.find(substring) != -1:
-                print("found item?id")
                 links[index] = url + link
 
         hackernews_data = []
 
         # Append Headline objects containing headline_id, headlines and links.
         for i in range(0, 30):
-            hackernews_data.append(Headlines(headline_id[i], headlines[i], links[i]))
+            pass
+            # hackernews_data.append(Headlines(headline_id[i], headlines[i], links[i], points[i]))
 
         return hackernews_data

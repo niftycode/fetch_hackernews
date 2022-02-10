@@ -21,6 +21,7 @@ class Headlines:
     headline_id: int
     headline: str
     link: str
+    points: str
 
     def __repr__(self):
         return (
@@ -35,4 +36,4 @@ class Headlines:
         Returns: String representation of this object
 
         """
-        return f"{self.headline_id} - {self.headline}\n" f"Link: {self.link}\n"
+        return f"{self.headline_id} - {self.points} - {self.headline}\n" f"Link: {self.link}\n"
