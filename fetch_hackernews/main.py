@@ -6,7 +6,7 @@
 Fetch Hacker News from news.ycombinator.com
 Python 3.10+
 Date created: January 26th, 2022
-Date modified: February 9th, 2022
+Date modified: February 16th, 2022
 """
 
 import os
@@ -26,6 +26,8 @@ logger = logging.getLogger()
 
 URL = constants.__URL__
 INDEX_FILE_PATH = constants.__INDEX_FILE_PATH__
+
+limit_datetime = datetime.now() - timedelta(hours=6)
 
 
 def check_data_file() -> bool:
@@ -69,5 +71,4 @@ def main():
 
 
 if __name__ == "__main__":
-    limit_datetime = datetime.now() - timedelta(hours=6)
     main()
