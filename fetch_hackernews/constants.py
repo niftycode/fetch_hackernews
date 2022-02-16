@@ -11,6 +11,6 @@ Date modified: February 16th, 2022
 
 import getpass
 
-__VERSION__ = "1.0.3"
+__VERSION__ = "1.0.4"
 __URL__ = "https://news.ycombinator.com"
 __INDEX_FILE_PATH__ = f"/Users/{getpass.getuser()}/.config/hackernews/index.html"
