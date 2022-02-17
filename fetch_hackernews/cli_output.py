@@ -15,6 +15,7 @@ from fetch_hackernews import common
 def cli_menu(headlines: list):
     """
     Show headline_ids, headlines and links in the console.
+
     Args:
         headlines: A list containing Headlines objects
         (headline_id, headline, link)

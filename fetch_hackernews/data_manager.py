@@ -36,7 +36,9 @@ class FileManager:
     def get_hackernews():
         """
         Fetch website data from the given URL
-        Returns: The fetched website data or None
+
+        Returns:
+            The fetched website data or None
         """
         website_data = requests.get(URL)
         if website_data.ok:
@@ -49,6 +51,7 @@ class FileManager:
     def create_config_file(file_path, content):
         """
         Save a file (in this case the index.html file)
+
         Args:
             file_path: The path to the directory in which to save the file.
             content: The content to be saved.
@@ -60,7 +63,9 @@ class FileManager:
     def parse_data():
         """
         Parse the index.html file.
-        Returns: A list containing the Headline objects.
+
+        Returns:
+            A list containing the Headline objects.
         """
         with open(INDEX_FILE_PATH, "r") as f:
             doc = BeautifulSoup(f, "html.parser")

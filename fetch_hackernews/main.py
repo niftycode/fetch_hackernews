@@ -34,7 +34,8 @@ def check_data_file() -> bool:
     """
     Check if the index.html file exist.
 
-    Returns: True if the file exist, False if the file doesn't exist.
+    Returns:
+        True if the file exist, False if the file doesn't exist.
 
     """
     if Path(INDEX_FILE_PATH).is_file():

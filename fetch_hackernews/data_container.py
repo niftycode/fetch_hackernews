@@ -31,8 +31,10 @@ class Headlines:
 
     def __str__(self):
         """
+        String representation
 
-        Returns: String representation of this object
+        Returns:
+            String representation of this object
 
         """
         return f"{self.headline_id} - {self.headline}\n" f"Link: {self.link}\n"

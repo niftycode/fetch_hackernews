@@ -20,7 +20,9 @@ __URL__ = "https://news.ycombinator.com"
 def platform_paths() -> str:
     """
     Check which operating system is running and return the corresponding path.
-    Returns: Path to the index.html file.
+
+    Returns:
+        Path to the index.html file.
 
     """
     installed_os = platform.system()
