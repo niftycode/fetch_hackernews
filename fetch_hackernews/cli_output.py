@@ -6,10 +6,10 @@
 Output fetched news
 Python 3.10+
 Date created: January 30th, 2022
-Date modified: February 16th, 2022
+Date modified: February 17th, 2022
 """
 
-from fetch_hackernews import constants
+from fetch_hackernews import common
 
 
 def cli_menu(headlines: list):
@@ -23,7 +23,7 @@ def cli_menu(headlines: list):
     print("##############################")
     print("#                            #")
     print("#     Fetch Hacker News      #")
-    print(f"#      Version: {constants.__VERSION__}        #")
+    print(f"#      Version: {common.__VERSION__}        #")
     print("#                            #")
     print("##############################")
     print()

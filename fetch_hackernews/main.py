@@ -6,7 +6,7 @@
 Fetch Hacker News from news.ycombinator.com
 Python 3.10+
 Date created: January 26th, 2022
-Date modified: February 16th, 2022
+Date modified: February 17th, 2022
 """
 
 import os
@@ -15,7 +15,7 @@ import logging
 from datetime import datetime, timedelta
 from pathlib import Path
 
-from fetch_hackernews import constants
+from fetch_hackernews import common
 from fetch_hackernews.app_config import check_config_dir
 from fetch_hackernews.data_manager import FileManager
 from fetch_hackernews.cli_output import cli_menu
@@ -24,8 +24,8 @@ from fetch_hackernews.cli_output import cli_menu
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger()
 
-URL = constants.__URL__
-INDEX_FILE_PATH = constants.__INDEX_FILE_PATH__
+URL = common.__URL__
+INDEX_FILE_PATH = common.platform_paths()
 
 limit_datetime = datetime.now() - timedelta(hours=6)
 
@@ -34,7 +34,7 @@ def check_data_file() -> bool:
     """
     Check if the index.html file exist.
 
-    Returns: True if the file exist, False if the File doesn't exist.
+    Returns: True if the file exist, False if the file doesn't exist.
 
     """
     if Path(INDEX_FILE_PATH).is_file():
@@ -60,6 +60,7 @@ def main():
             logger.debug("Fetch data...")
             fetched_news = FileManager.get_hackernews()
             FileManager.create_config_file(INDEX_FILE_PATH, fetched_news)
+
         hackernews = FileManager.parse_data()
         cli_menu(hackernews)
     else:

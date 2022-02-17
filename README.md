@@ -6,7 +6,7 @@ I know, there are already some similar projects via [PyPi](https://pypi.org) ava
 
 ## Operating System
 
-**macOS only**
+macOS, Linux and Windows
 
 ## Requirements
 

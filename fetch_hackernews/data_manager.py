@@ -6,7 +6,7 @@
 Fetch Hacker News from news.ycombinator.com
 Python 3.10+
 Date created: February 5th, 2022
-Date modified: February 10th, 2022
+Date modified: February 17th, 2022
 """
 
 
@@ -16,13 +16,13 @@ import logging
 from bs4 import BeautifulSoup
 
 from fetch_hackernews.data_container import Headlines
-from fetch_hackernews import constants
+from fetch_hackernews import common
 
 
 logger = logging.getLogger()
 
-URL = constants.__URL__
-INDEX_FILE_PATH = constants.__INDEX_FILE_PATH__
+URL = common.__URL__
+INDEX_FILE_PATH = common.platform_paths()
 
 
 class FileManager:

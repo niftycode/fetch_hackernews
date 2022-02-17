@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.5] - 2022-02-18
+
+The program can now be used on macOS, Windows and Linux.
+
 ## [1.0.4] - 2022-02-16
 
 * Fix misspelling in setup.cfg
