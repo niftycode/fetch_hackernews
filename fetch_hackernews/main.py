@@ -9,17 +9,15 @@ Date created: January 26th, 2022
 Date modified: February 17th, 2022
 """
 
-import os
 import logging
-
+import os
 from datetime import datetime, timedelta
 from pathlib import Path
 
 from fetch_hackernews import common
 from fetch_hackernews.app_config import check_config_dir
-from fetch_hackernews.data_manager import FileManager
 from fetch_hackernews.cli_output import cli_menu
-
+from fetch_hackernews.data_manager import FileManager
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger()
