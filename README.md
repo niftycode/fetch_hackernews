@@ -1,4 +1,4 @@
-# fetch_hackernews
+# fetch-hackernews
 
 A simple program to fetch [Hackernews](https://news.ycombinator.com) from *news.ycombinator.com* written in Python.
 
@@ -42,7 +42,7 @@ This shows you the 30 most recent messages. The output looks similar to the one 
     Link: https://duckduckgo.com/email/faq
     …
 
-After running this program, an index.html file is created locally. This file will be updated after six hours. This reduces requests to the server from [news.ycombinator.com](https://news.ycombinator.com).
+After running this program, an index.html file is created locally. This reduces requests to the server from [news.ycombinator.com](https://news.ycombinator.com).
 
 So, all news will be read from the local `index.html` file. This program will search for such a file. If no file has been created yet, it will create this file, download the content (using `requests`) and save it. After that, the content will be parsed using `BeautifulSoup`.
 
