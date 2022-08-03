@@ -1,4 +1,5 @@
-![](https://img.shields.io/github/license/niftycode/fetch_hackernews) ![](https://img.shields.io/github/issues/niftycode/fetch_hackernews.svg?style=flat) ![](https://img.shields.io/pypi/v/fetch_hackernews)
+![](https://img.shields.io/badge/python-%3E%3D%203.8-brightgreen) ![](https://img.shields.io/github/license/niftycode/fetch_hackernews) ![](https://img.shields.io/github/issues/niftycode/fetch_hackernews.svg?style=flat) ![](https://img.shields.io/pypi/v/fetch_hackernews) ![GitHub last commit](https://img.shields.io/github/last-commit/niftycode/fetch_hackernews)
+
 # fetch-hackernews
 
 A simple program to fetch [Hackernews](https://news.ycombinator.com) from *news.ycombinator.com* written in Python.
