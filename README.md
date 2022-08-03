@@ -1,3 +1,4 @@
+![](https://img.shields.io/github/license/niftycode/fetch_hackernews) ![](https://img.shields.io/github/issues/niftycode/fetch_hackernews.svg?style=flat) ![](https://img.shields.io/pypi/v/fetch_hackernews)
 # fetch-hackernews
 
 A simple program to fetch [Hackernews](https://news.ycombinator.com) from *news.ycombinator.com* written in Python.
