@@ -6,10 +6,13 @@
 Data model
 Python 3.10+
 Date created: January 30th, 2022
-Date modified: February 7th, 2022
+Date modified: August 7th, 2022
 """
 
 from dataclasses import dataclass
+
+REVERSE = "\033[;7m"  # inverts the terminal background and foreground colors
+RESET = "\033[0m"
 
 
 @dataclass
@@ -37,4 +40,4 @@ class Headlines:
             String representation of this object
 
         """
-        return f"{self.headline_id} - {self.headline}\n" f"Link: {self.link}\n"
+        return f"{REVERSE}{self.headline_id}{RESET} - {self.headline}\n" f"Link: {self.link}\n"
