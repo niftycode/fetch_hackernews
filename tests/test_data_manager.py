@@ -3,7 +3,7 @@ import pytest
 from unittest.mock import patch, mock_open
 from nose.tools import assert_is_not_none, assert_is_none
 
-from fetch_hackernews.data_manager import FileManager
+from fetch_hackernews import data_manager
 
 
 @pytest.fixture()
@@ -18,7 +18,7 @@ def test_response_is_ok(mock_get):
     mock_get.return_value.ok = True
 
     # Send a request to the server and store the response.
-    website_data = FileManager.get_hackernews()
+    website_data = data_manager.get_hackernews()
 
     # Confirm that the website data will be returned (and not None)
     assert_is_not_none(website_data)
@@ -28,7 +28,7 @@ def test_response_is_ok(mock_get):
 def test_response_is_not_ok(mock_get):
 
     mock_get.return_value.ok = False
-    website_data = FileManager.get_hackernews()
+    website_data = data_manager.get_hackernews()
     assert_is_none(website_data)
 
 
@@ -38,7 +38,7 @@ def test_write_index_file(create_directory):
     open_mock = mock_open()
 
     with patch("fetch_hackernews.data_manager.open", open_mock, create=True) as mocked_file:
-        FileManager.create_config_file(fake_file_path, content)
+        data_manager.create_config_file(fake_file_path, content)
 
         # assert if opened file on write mode 'w'
         mocked_file.assert_called_once_with(fake_file_path, 'w')

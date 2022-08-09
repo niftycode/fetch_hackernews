@@ -17,7 +17,7 @@ from pathlib import Path
 from fetch_hackernews import common
 from fetch_hackernews.app_config import check_config_dir
 from fetch_hackernews.cli_output import cli_menu
-from fetch_hackernews.data_manager import FileManager
+from fetch_hackernews import data_manager
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger()
@@ -34,8 +34,8 @@ def check_data_file() -> bool:
 
     Returns:
         True if the file exist, False if the file doesn't exist.
-
     """
+
     if Path(INDEX_FILE_PATH).is_file():
         return True
     else:
@@ -46,6 +46,7 @@ def main():
     """
     Entry point of this application.
     """
+
     check_config_dir()
     rval = check_data_file()
 
@@ -57,16 +58,16 @@ def main():
 
         if last_modified < limit_datetime:
             logger.debug("Fetch data...")
-            fetched_news = FileManager.get_hackernews()
-            FileManager.create_config_file(INDEX_FILE_PATH, fetched_news)
+            fetched_news = data_manager.get_hackernews()
+            data_manager.create_config_file(INDEX_FILE_PATH, fetched_news)
 
-        hackernews = FileManager.parse_data()
+        hackernews = data_manager.parse_data()
         cli_menu(hackernews)
     else:
         logger.debug("Found no local index.html file.")
-        fetched_news = FileManager.get_hackernews()
-        FileManager.create_config_file(INDEX_FILE_PATH, fetched_news)
-        hackernews = FileManager.parse_data()
+        fetched_news = data_manager.get_hackernews()
+        data_manager.create_config_file(INDEX_FILE_PATH, fetched_news)
+        hackernews = data_manager.parse_data()
         cli_menu(hackernews)
 
 

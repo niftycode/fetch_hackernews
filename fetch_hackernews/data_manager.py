@@ -25,86 +25,71 @@ URL = common.__URL__
 INDEX_FILE_PATH = common.platform_paths()
 
 
-class FileManager:
+def get_hackernews():
     """
-    This class includes static methods for
-    fetching data, parsing the fetched data
-    and creating the local index.html file.
+    Fetch website data from the given URL
+    Returns:
+        The fetched website data or None
     """
+    website_data = requests.get(URL)
+    if website_data.ok:
+        logger.debug(website_data.text)
+        return website_data.text
+    else:
+        return None
 
-    @staticmethod
-    def get_hackernews():
-        """
-        Fetch website data from the given URL
 
-        Returns:
-            The fetched website data or None
-        """
-        website_data = requests.get(URL)
-        if website_data.ok:
-            logger.debug(website_data.text)
-            return website_data.text
-        else:
-            return None
+def create_config_file(file_path, content):
+    """
+    Save a file (in this case the index.html file)
+    Args:
+        file_path: The path to the directory in which to save the file.
+        content: The content to be saved.
+    """
+    with open(file_path, "w") as fh:
+        fh.write(content)
 
-    @staticmethod
-    def create_config_file(file_path, content):
-        """
-        Save a file (in this case the index.html file)
 
-        Args:
-            file_path: The path to the directory in which to save the file.
-            content: The content to be saved.
-        """
-        with open(file_path, "w") as fh:
-            fh.write(content)
+def parse_data():
+    """
+    Parse the index.html file.
+    Returns:
+        A list containing the Headline objects.
+    """
+    with open(INDEX_FILE_PATH, "r") as f:
+        doc = BeautifulSoup(f, "html.parser")
+    titlelink = doc.find_all(class_="titlelink", href=True)
 
-    @staticmethod
-    def parse_data():
-        """
-        Parse the index.html file.
+    # score = doc.find_all(class_="score")
+    # TODO: add points
 
-        Returns:
-            A list containing the Headline objects.
-        """
-        with open(INDEX_FILE_PATH, "r") as f:
-            doc = BeautifulSoup(f, "html.parser")
+    headline_id = []
+    headlines = []
+    links = []
+    # points = []
 
-        titlelink = doc.find_all(class_="titlelink", href=True)
-        # score = doc.find_all(class_="score")
-        # TODO: add points
+    for i in range(1, 31):
+        headline_id.append(i)
+    for t in titlelink:
+        headlines.append(t.text)
+        links.append(t["href"])
 
-        headline_id = []
-        headlines = []
-        links = []
-        # points = []
+    # for s in score:
+    #     points.append(s.text)
+    # print(len(points))
+    # for j in points:
+    #     print(j)
 
-        for i in range(1, 31):
-            headline_id.append(i)
+    # Handle the case where a link contains the string "item?id=".
+    substring = "item?id="
+    url = "https://news.ycombinator.com/"
+    for index, link in enumerate(links):
+        if link.find(substring) != -1:
+            links[index] = url + link
+    hackernews_data = []
 
-        for t in titlelink:
-            headlines.append(t.text)
-            links.append(t["href"])
+    # Append Headline objects containing headline_id, headlines and links.
+    for i in range(0, 30):
+        hackernews_data.append(Headlines(headline_id[i], headlines[i], links[i]))
 
-        # for s in score:
-        #     points.append(s.text)
-
-        # print(len(points))
-        # for j in points:
-        #     print(j)
-
-        # Handle the case where a link contains the string "item?id=".
-        substring = "item?id="
-        url = "https://news.ycombinator.com/"
-
-        for index, link in enumerate(links):
-            if link.find(substring) != -1:
-                links[index] = url + link
-
-        hackernews_data = []
-
-        # Append Headline objects containing headline_id, headlines and links.
-        for i in range(0, 30):
-            hackernews_data.append(Headlines(headline_id[i], headlines[i], links[i]))
-
-        return hackernews_data
+    return hackernews_data
