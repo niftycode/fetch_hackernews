@@ -21,7 +21,7 @@ class Headlines:
     This dataclass is the hacker news data store.
     """
 
-    headline_id: int
+    headline_id: str
     headline: str
     link: str
 

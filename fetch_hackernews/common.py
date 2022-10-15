@@ -6,14 +6,14 @@
 Common methods + consstants
 Python 3.10+
 Date created: February 7th, 2022
-Date modified: February 17th, 2022
+Date modified: October 15th, 2022
 """
 
 import getpass
 import platform
 
 
-__VERSION__ = "1.0.5"
+__VERSION__ = "1.0.6"
 __URL__ = "https://news.ycombinator.com"
 
 
