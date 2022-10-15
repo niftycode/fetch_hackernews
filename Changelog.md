@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.6] - 2022-10-15
+
+Since the structure of the website was changed, the parser had to be adjusted.
+
 ## [1.0.5] - 2022-02-18
 
 The program can now be used on macOS, Windows and Linux.
