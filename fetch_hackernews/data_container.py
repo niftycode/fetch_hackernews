@@ -6,7 +6,7 @@
 Data model
 Python 3.10+
 Date created: January 30th, 2022
-Date modified: August 7th, 2022
+Date modified: October 15th, 2022
 """
 
 from dataclasses import dataclass
@@ -40,4 +40,7 @@ class Headlines:
             String representation of this object
 
         """
-        return f"{REVERSE}{self.headline_id}{RESET} - {self.headline}\n" f"Link: {self.link}\n"
+        return (
+            f"{REVERSE}{self.headline_id}{RESET} - {self.headline}\n"
+            f"Link: {self.link}\n"
+        )

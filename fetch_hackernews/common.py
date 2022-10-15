@@ -13,7 +13,7 @@ import getpass
 import platform
 
 
-__VERSION__ = "1.0.6"
+__VERSION__ = "1.0.7"
 __URL__ = "https://news.ycombinator.com"
 
 

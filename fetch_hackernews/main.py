@@ -19,7 +19,7 @@ from fetch_hackernews.app_config import check_config_dir
 from fetch_hackernews.cli_output import cli_menu
 from fetch_hackernews import data_manager
 
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger()
 
 URL = common.__URL__

@@ -12,6 +12,7 @@ Date modified: October 15th, 2022
 
 import requests
 import logging
+import sys
 import re
 
 from bs4 import BeautifulSoup
@@ -34,14 +35,21 @@ def get_hackernews():
     Returns:
         The fetched website data or None
     """
-    website_data = requests.get(URL)
-    if website_data.ok:
-        return website_data.text
+    try:
+        response = requests.get(URL, timeout=5)
+    except requests.Timeout as e:
+        sys.exit(f"Unable to retrieve data:\n{e!r}")
+    except requests.ConnectionError as e:
+        sys.exit(f"Unable to retrieve data:\n{e!r}")
+
+    if response.status_code == 200:
+        logger.debug("Status 200, OK")
+        return response.text
     else:
-        return None
+        sys.exit("Website data request not successfull (wrong status code)!")
 
 
-def create_config_file(file_path, content):
+def create_config_file(file_path: str, content: str):
     """
     Save a file (in this case the index.html file)
     Args:
@@ -61,21 +69,22 @@ def parse_data() -> list:
     with open(INDEX_FILE_PATH, "r") as f:
         soup = BeautifulSoup(f, "html.parser")
 
-    # logger.debug(soup.prettify())
-
-    # title = soup.find_all('a')
+    logger.debug(soup.prettify())
 
     title = soup.find_all("td", "title")
     unfiltered_links = []
     filtered_links = []
 
-    for i in soup.find_all("span", "titleline"):
-        for j in i.find_all("a", href=True):
-            unfiltered_links.append(j["href"])
-            # print(j["href"])
+    try:
+        for i in soup.find_all("span", "titleline"):
+            for j in i.find_all("a", href=True):
+                unfiltered_links.append(j["href"])
+    except Exception as e:
+        print(e)
+        sys.exit("Cannot parse data! Exit the program.")
 
-    for ul in unfiltered_links:
-        match = re.findall("^https:.*", ul) or re.findall("^item.*", ul)
+    for i in unfiltered_links:
+        match = re.findall("^https:.*", i) or re.findall("^item.*", i)
         if not match:
             continue
         filtered_links.append(match)
@@ -93,7 +102,7 @@ def parse_data() -> list:
     for j in title_list:
         headlines.append(j.text)
 
-    def flatten(a_list):
+    def flatten(a_list: Iterable):
         """
         Flatten an irregular (arbitrarily nested) list of lists
 
@@ -124,7 +133,10 @@ def parse_data() -> list:
     hackernews_data = []
 
     # Append Headline objects containing headline_id, headlines and links.
-    for i in range(0, 30):
-        hackernews_data.append(Headlines(rank[i], headlines[i], links[i]))
-
+    try:
+        for i in range(0, 30):
+            hackernews_data.append(Headlines(rank[i], headlines[i], links[i]))
+    except IndexError as e:
+        print(e)
+        sys.exit("Sorry, an error occured!")
     return hackernews_data
