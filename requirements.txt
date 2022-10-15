@@ -1,4 +1,4 @@
-setuptools~=57.0.0
+setuptools~=65.5
 requests~=2.26.0
 beautifulsoup4~=4.11
 flake8~=4.0.1
