@@ -6,7 +6,7 @@
 Fetch Hacker News from news.ycombinator.com
 Python 3.10+
 Date created: February 5th, 2022
-Date modified: October 15th, 2022
+Date modified: October 20th, 2022
 """
 
 
@@ -22,7 +22,7 @@ from fetch_hackernews.data_container import Headlines
 from fetch_hackernews import common
 
 
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger()
 
 URL = common.__URL__
@@ -84,7 +84,7 @@ def parse_data() -> list:
         sys.exit("Cannot parse data! Exit the program.")
 
     for i in unfiltered_links:
-        match = re.findall("^https:.*", i) or re.findall("^item.*", i)
+        match = re.findall("^https:.*", i) or re.findall("^item.*", i) or re.findall("^http:.*", i)
         if not match:
             continue
         filtered_links.append(match)
@@ -129,9 +129,6 @@ def parse_data() -> list:
     logger.debug(len(rank))
     logger.debug(len(headlines))
     logger.debug(len(filtered_links))
-
-    for i, f in enumerate(filtered_links):
-        print(f"index: {i}, link: {f}")
 
     hackernews_data = []
 
