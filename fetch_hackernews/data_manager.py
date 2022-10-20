@@ -22,7 +22,7 @@ from fetch_hackernews.data_container import Headlines
 from fetch_hackernews import common
 
 
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger()
 
 URL = common.__URL__
@@ -69,7 +69,7 @@ def parse_data() -> list:
     with open(INDEX_FILE_PATH, "r") as f:
         soup = BeautifulSoup(f, "html.parser")
 
-    logger.debug(soup.prettify())
+    # logger.debug(soup.prettify())
 
     title = soup.find_all("td", "title")
     unfiltered_links = []
@@ -129,6 +129,9 @@ def parse_data() -> list:
     logger.debug(len(rank))
     logger.debug(len(headlines))
     logger.debug(len(filtered_links))
+
+    for i, f in enumerate(filtered_links):
+        print(f"index: {i}, link: {f}")
 
     hackernews_data = []
 
