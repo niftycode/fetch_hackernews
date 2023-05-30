@@ -46,7 +46,7 @@ def get_hackernews():
         logger.debug("Status 200, OK")
         return response.text
     else:
-        sys.exit("Website data request not successfull (wrong status code)!")
+        sys.exit("Website data request not successful (wrong status code)!")
 
 
 def create_config_file(file_path: str, content: str):
@@ -138,5 +138,5 @@ def parse_data() -> list:
             hackernews_data.append(Headlines(rank[i], headlines[i], links[i]))
     except IndexError as e:
         print(e)
-        sys.exit("Sorry, an error occured!")
+        sys.exit("Sorry, an error occurred!")
     return hackernews_data
