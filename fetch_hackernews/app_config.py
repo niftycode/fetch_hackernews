@@ -5,8 +5,8 @@
 """
 Check if the .config directory exists
 Python 3.10+
-Date created: January 31st, 2022
-Date modified: October 15th, 2022
+Date created: January 31, 2022
+Date modified: October 15, 2022
 """
 
 import getpass

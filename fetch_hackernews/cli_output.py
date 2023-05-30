@@ -5,8 +5,8 @@
 """
 Output fetched news
 Python 3.10+
-Date created: January 30th, 2022
-Date modified: February 17th, 2022
+Date created: January 30, 2022
+Date modified: February 17, 2022
 """
 
 from fetch_hackernews import common

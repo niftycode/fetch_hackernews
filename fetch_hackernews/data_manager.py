@@ -5,8 +5,8 @@
 """
 Fetch Hacker News from news.ycombinator.com
 Python 3.10+
-Date created: February 5th, 2022
-Date modified: October 20th, 2022
+Date created: February 5, 2022
+Date modified: October 20, 2022
 """
 
 
@@ -119,8 +119,8 @@ def parse_data() -> list:
     links = list(flatten(filtered_links))
 
     # Handle the case where a link contains the string "item?id=".
-    substring = "item?id="
-    url = "https://news.ycombinator.com/"
+    substring: str = "item?id="
+    url: str = "https://news.ycombinator.com/"
 
     for index, link in enumerate(links):
         if link.find(substring) != -1:

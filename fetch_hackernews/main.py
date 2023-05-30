@@ -5,8 +5,8 @@
 """
 Fetch Hacker News from news.ycombinator.com
 Python 3.10+
-Date created: January 26th, 2022
-Date modified: February 17th, 2022
+Date created: January 26, 2022
+Date modified: February 17, 2022
 """
 
 import logging
