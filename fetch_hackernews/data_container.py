@@ -5,8 +5,8 @@
 """
 Data model
 Python 3.10+
-Date created: January 30, 2022
-Date modified: October 15, 2022
+Date created: January 30th, 2022
+Date modified: October 15th, 2022
 """
 
 from dataclasses import dataclass

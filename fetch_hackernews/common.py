@@ -3,10 +3,10 @@
 
 
 """
-Common methods + consstants
+Common methods + constants
 Python 3.10+
-Date created: February 7, 2022
-Date modified: May 30, 2023
+Date created: February 7th, 2022
+Date modified: May 30th, 2023
 """
 
 import getpass

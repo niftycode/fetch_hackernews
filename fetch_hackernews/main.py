@@ -5,8 +5,8 @@
 """
 Fetch Hacker News from news.ycombinator.com
 Python 3.10+
-Date created: January 26, 2022
-Date modified: February 17, 2022
+Date created: January 26th, 2022
+Date modified: May 30th, 2023
 """
 
 import logging
@@ -31,6 +31,7 @@ limit_datetime = datetime.now() - timedelta(hours=6)
 def check_data_file() -> bool:
     """
     Check if the index.html file exist.
+    (in ~/.config/hackernews/)
 
     Returns:
         True if the file exist, False if the file doesn't exist.
