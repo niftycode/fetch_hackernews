@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.8] - 2024-05-21
+
+Update requirements.txt (`requests` version is now ~= 2.32.1)
+
 ## [1.0.7] - 2022-10-20
 
 Fix list index out of range bug.
