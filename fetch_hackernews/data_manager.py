@@ -84,7 +84,11 @@ def parse_data() -> list:
         sys.exit("Cannot parse data! Exit the program.")
 
     for i in unfiltered_links:
-        match = re.findall("^https:.*", i) or re.findall("^item.*", i) or re.findall("^http:.*", i)
+        match = (
+            re.findall("^https:.*", i)
+            or re.findall("^item.*", i)
+            or re.findall("^http:.*", i)
+        )
         if not match:
             continue
         filtered_links.append(match)
@@ -123,8 +127,8 @@ def parse_data() -> list:
     url: str = "https://news.ycombinator.com/"
 
     for index, link in enumerate(links):
-        if link.find(substring) != -1:
-            links[index] = url + link
+        if link.find(substring) != -1:  # type: ignore
+            links[index] = url + link  # type: ignore
 
     logger.debug(len(rank))
     logger.debug(len(headlines))
@@ -135,7 +139,7 @@ def parse_data() -> list:
     # Append Headline objects containing headline_id, headlines and links.
     try:
         for i in range(0, 30):
-            hackernews_data.append(Headlines(rank[i], headlines[i], links[i]))
+            hackernews_data.append(Headlines(rank[i], headlines[i], links[i]))  # type: ignore
     except IndexError as e:
         print(e)
         sys.exit("Sorry, an error occurred!")
