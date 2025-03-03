@@ -10,7 +10,7 @@ email: [py@bodo-schoenfeld.de](mailto:py@bodo-schoenfeld.de)
 
 ## Development Dependencies
 
-- Python 3 (versions 3.10+ are currently supported)
+- Python 3 (versions 3.12+ are currently supported)
 - `pip3 install flake8 pytest nose`
 - `flake8` to check for errors and to enforce code style.
 - `pytest` to run the tests (optional, you can contribute without writing tests).

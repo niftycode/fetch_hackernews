@@ -1,7 +1,6 @@
 import pytest
 
 from unittest.mock import patch, mock_open
-from nose.tools import assert_is_not_none, assert_is_none  # type: ignore
 
 from fetch_hackernews import data_manager
 
@@ -21,7 +20,7 @@ def test_response_is_ok(mock_get):
     website_data = data_manager.get_hackernews()
 
     # Confirm that the website data will be returned (and not None)
-    assert_is_not_none(website_data)
+    assert website_data is not None
 
 
 @patch("fetch_hackernews.data_manager.requests.get")
@@ -29,7 +28,7 @@ def test_response_is_not_ok(mock_get):
 
     mock_get.return_value.ok = False
     website_data = data_manager.get_hackernews()
-    assert_is_none(website_data)
+    assert website_data is None
 
 
 def test_write_index_file(create_directory):
