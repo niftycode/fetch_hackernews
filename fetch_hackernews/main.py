@@ -4,7 +4,7 @@
 
 """
 Fetch Hacker News from news.ycombinator.com
-Python 3.10+
+Python 3.12+
 Date created: January 26th, 2022
 Date modified: May 30th, 2023
 """

@@ -10,10 +10,10 @@ email: [py@bodo-schoenfeld.de](mailto:py@bodo-schoenfeld.de)
 
 ## Development Dependencies
 
-- Python 3 (versions 3.8+ are currently supported)
+- Python 3 (versions 3.10+ are currently supported)
 - `pip3 install flake8 pytest nose`
-    - `flake8` to check for errors and to enforce code style.
-    - `pytest` to run the tests (optional, you can contribute without writing tests).
+- `flake8` to check for errors and to enforce code style.
+- `pytest` to run the tests (optional, you can contribute without writing tests).
 - Install all requirements with the following command:
 
         pip3 install -r requirements.txt
@@ -23,9 +23,7 @@ email: [py@bodo-schoenfeld.de](mailto:py@bodo-schoenfeld.de)
 - ~~You can find~~
   ~~a [brief introduction to reStructuredText](https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html) in the Sphinx documentation.~~
 
-**Note**: This project uses **absolute imports** ([recommended by PEP8](https://www.python.org/dev/peps/pep-0008/#imports)). So, you'd be better off using a **virtual environment** and run
-
-    python3 setup.py install --user
+**Note**: This project uses **absolute imports** ([recommended by PEP8](https://www.python.org/dev/peps/pep-0008/#imports)). So, you'd be better off using a **virtual environment**.
 
 ## Development Process
 
@@ -36,9 +34,9 @@ email: [py@bodo-schoenfeld.de](mailto:py@bodo-schoenfeld.de)
 
 - Work on the master branch for smaller patches or create a **separate branch for new features**.
 - Make changes, `git add` and then commit. You can link to the issue number in the commit message (optional).
-- (Optional) Run `flake8`, `pytest` and `black`.
-- (Optional) If you're updating the documentation, make sure you update `docs/index.rst` and `README.md` simultaneously.
 - Use the GitHub website to create a Pull Request (PR) and wait for the maintainers to review it.
+- (Optional) Run `flake8`, `pytest` and `black`.
+- ~~(Optional) If you're updating the documentation, make sure you update `docs/index.rst` and `README.md` simultaneously.~~
 
 ## Code Guidelines
 

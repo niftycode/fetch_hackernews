@@ -4,7 +4,7 @@
 
 """
 Check if the .config directory exists
-Python 3.10+
+Python 3.12+
 Date created: January 31st, 2022
 Date modified: October 15th, 2022
 """

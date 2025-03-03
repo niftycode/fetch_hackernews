@@ -1,6 +1,11 @@
-![](https://img.shields.io/badge/python-%3E%3D%203.8-brightgreen) ![](https://img.shields.io/github/license/niftycode/fetch_hackernews) ![](https://img.shields.io/github/issues/niftycode/fetch_hackernews.svg?style=flat) ![](https://img.shields.io/pypi/v/fetch_hackernews) ![GitHub last commit](https://img.shields.io/github/last-commit/niftycode/fetch_hackernews)
-
 # fetch-hackernews
+
+![Static Badge](https://img.shields.io/badge/python-3.12-blue)
+![Static Badge](https://img.shields.io/badge/python-3.13-blue)
+![GitHub License](https://img.shields.io/github/license/niftycode/ai-chatbot)
+![Github Issues](https://img.shields.io/github/issues/niftycode/fetch_hackernews.svg?style=flat)
+![PyPi Version](https://img.shields.io/pypi/v/fetch_hackernews)
+![GitHub last commit](https://img.shields.io/github/last-commit/niftycode/fetch_hackernews)
 
 A simple program to fetch [Hackernews](https://news.ycombinator.com) from *news.ycombinator.com* written in Python.
 
@@ -12,7 +17,7 @@ macOS, Linux and Windows
 
 ## Requirements
 
-* Python >= 3.8
+* Python >= 3.12
 * `requests`
 * `beautifulsoup4`
 
@@ -22,7 +27,7 @@ macOS, Linux and Windows
 
 ## Usage
 
-Start the program with:
+Start the program with following command:
 
     $ fetch_hackernews
 
@@ -33,7 +38,8 @@ This shows you the 30 most recent messages. The output looks similar to the one 
 
     ##############################
     #                            #
-    #         Hackernews         #
+    #      Fetch Hacker News     #
+    #       Version: 1.0.7       #
     #                            #
     ##############################
 

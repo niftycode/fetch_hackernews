@@ -4,7 +4,7 @@
 
 """
 Common methods + constants
-Python 3.10+
+Python 3.12+
 Date created: February 7th, 2022
 Date modified: May 30th, 2023
 """

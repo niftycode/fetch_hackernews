@@ -4,7 +4,7 @@
 
 """
 Output fetched news
-Python 3.10+
+Python 3.12+
 Date created: January 30th, 2022
 Date modified: February 17th, 2022
 """

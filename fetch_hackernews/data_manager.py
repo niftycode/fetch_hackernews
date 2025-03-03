@@ -4,7 +4,7 @@
 
 """
 Fetch Hacker News from news.ycombinator.com
-Python 3.10+
+Python 3.12+
 Date created: February 5, 2022
 Date modified: October 20, 2022
 """
@@ -69,7 +69,7 @@ def parse_data() -> list:
     with open(INDEX_FILE_PATH, "r") as f:
         soup = BeautifulSoup(f, "html.parser")
 
-    # logger.debug(soup.prettify())
+    logger.debug(soup.prettify())
 
     title = soup.find_all("td", "title")
     unfiltered_links = []
